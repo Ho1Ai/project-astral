@@ -1,0 +1,36 @@
+.offersLand {
+    background-color: #efefef;
+    border-radius: 10px;
+    margin: 20px 30px 10px 30px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px 20px 0px;
+}
+
+.offersLandParagraph {
+    padding: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
+    width: 70%;
+    max-width: 900px;
+    text-align: justify;
+}
+
+.startAProjectLandButton {
+    height: 50px;
+    width: 150px;
+    border: 2px solid black;
+    background: transparent;
+    font-weight: 500;
+    color: black;
+    border-radius: 10px;
+    transition: all .25s ease-in-out;
+}
+
+.startAProjectLandButton:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    box-shadow: 0px 0px 3px black;
+}

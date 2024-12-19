@@ -1,0 +1,74 @@
+form {
+    display: flex;
+    border-radius: 10px;
+    background-color: #efefef;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80vh;
+    max-height: 900px;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+.formCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerLog {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logHeader {
+    color: black;
+}
+
+.logInputContainer {
+    text-align: left;
+    width: 90%;
+    color: black;
+    /* padding: 15px 0px 15px 0px; */
+}
+
+.logPgMainInput {
+    border: 0;
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+    height: 40px;
+    background-color: #dddddd;
+    color: black;
+}
+
+.logPgMainButton {
+    display: flex;
+    background: transparent;
+    width: 90%;
+    color: white;
+    border: 0px;
+    background-color: #00aa00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 40px;
+    transition: all .25s ease-in-out;
+}
+
+.logPgMainButton:hover {
+    color: white;
+    cursor: pointer;
+    background-color: #00cc00;
+}
+
+/* 10 10 10 9 9 */
