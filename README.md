@@ -14,4 +14,4 @@ For developers:
         2. tailwindcss
 
 # Still not ready! 
-Uploaded, because I don't wanna use Google Drive to share my project between my PC and laptop
+Uploaded, because I don't wanna use Google Drive to share my project between my PC and
