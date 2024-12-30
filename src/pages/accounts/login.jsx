@@ -3,7 +3,7 @@ import './accs.css'
 const LoginPage = () => {
     return(
     <div className='containerLog'>
-        <form>
+        <form action='/indev'>
             <div className="formCont">
                 <h1 className='logHeader'>
                     Sign In
@@ -26,7 +26,9 @@ const LoginPage = () => {
                     <input type="password" className='logPgMainInput'/>
                 </div>
 
-                <button className='logPgMainButton'>Sign in</button>
+                {/* <a href="/indev" style={{height: "auto", width: 'auto'}}> */}
+                    <button className='logPgMainButton'>Sign in</button>
+                {/* </a> */}
             </div>
 
 

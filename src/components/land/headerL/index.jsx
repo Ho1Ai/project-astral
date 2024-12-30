@@ -1,4 +1,5 @@
 import './index.css'
+import { Link } from 'react-router-dom'
 
 const HeaderL = () => {
     return (
@@ -8,17 +9,17 @@ const HeaderL = () => {
             </h1>
 
             <nav className='navL'>
-                <a href="">About</a>
-                <a href="">Projects</a>
-                <a href="">GitHub</a>
-                <a href="">Wiki</a>
+                <Link to={{pathname:"/About"}}>About</Link>
+                <Link to={{pathname:"/OpenProjects"}}>Projects</Link>
+                <a href="https://github.com/Ho1Ai/project-astral">GitHub</a>
+                <Link to={{pathname:"/wiki"}}>Wiki</Link>
             </nav>
 
-            <a href="/login">
+            <Link to={{pathname:"/login"}}>
                 <button className='loginButtonL'>
                     sign in
                 </button>
-            </a>
+            </Link>
         </header>
     )
 }

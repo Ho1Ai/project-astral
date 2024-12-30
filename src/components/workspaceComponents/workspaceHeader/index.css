@@ -1,0 +1,21 @@
+.profileHeader {
+    display: flex;
+    height: 120px;
+    color: black;
+    background: #efefef;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 30px 10px 30px;
+    padding: 0px 30px;
+    border-radius: 10px;
+}
+
+.headerLink {
+    color: #000;
+    text-decoration: none;
+}
+
+.headerNavigationBlock {
+    display: flex;
+    gap: 30px;
+}

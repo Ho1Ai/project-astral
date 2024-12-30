@@ -1,17 +1,14 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
 For developers: 
     used libraries (exc. React):
         1. react-router-dom
         2. tailwindcss
 
 # Still not ready! 
-Uploaded, because I don't wanna use Google Drive to share my project between my PC and
+Uploaded, because I don't wanna use Google Drive to share my project between my PC and laptop
+
+# For people, who looks at this project
+there is some things I used in the beggining. You had better know about these things:
+    - .totmb is same to .md or .txt (just document with text, no more)
+    - Somewhere you can see comments like this: " /* ember styles */ ". Maybe it is strange to see "Ember"... who is "Ember"?.. Well, "Ember" is... let's call it "subapplication"... it is a subapplication for notes (subapplication cuz I was making this stuff as another application). It is easier for me to call it like that, but in the future I'm gonna remove this name and it will become just "notes"

@@ -1,0 +1,26 @@
+.projectInfoSection {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    margin: 20px 30px 10px 30px;
+    border-radius: 10px;
+    /* background: #efefef; */
+}
+
+/* 
+.projectDescription {
+} */
+
+.projectInfoChildInstance {
+    background-color: #efefef;
+    min-height: 200px;
+    width: 100%; /* wow, it works with at least 34%, but I use 100%... well, "auto" doesn't work btw */
+    border-radius: 10px;
+    overflow: scroll;
+    max-height: 600px;    
+    color: black;
+}
+
+.projectInfoChildInstance > .container {
+    padding: 0px 20px;
+}
