@@ -1,6 +1,8 @@
 import { useState } from "react"
 import WorkspaceHeader from "../../../components/workspaceComponents/workspaceHeader"
 import ProjectInfo from "../../../components/workspaceComponents/projects/projectPage/projectInfo"
+import ProjectToDoList from "../../../components/workspaceComponents/projects/projectPage/toDo"
+import CommentsList from "../../../components/workspaceComponents/projects/projectPage/emeryComments"
 
 const ProjectMainPage = () => {
     let projectInfo = {
@@ -20,10 +22,53 @@ const ProjectMainPage = () => {
 
     let [listOfToDo, setListOfToDo] = useState([
         {
-            name: `Make Application`,
+            name: `Make an Application`,
             state: 1 // states: 1 (blue) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
+        },{
+            name: `Build a Project`,
+            state: 1 // states: 1 (blue) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
+        },{
+            name: `Deploy a Project`,
+            state: 1 // states: 1 (red) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
         }
     ]) //also gonna take everything from server, but it will be placed in another array, cuz I wanna change it on clients side
+
+    const changeToDoListChildStatus = (onChangeIndex, to) => {
+        setListOfToDo((oldList)=>{
+            const rewriter = oldList.map((value, index) => {
+                if(index == onChangeIndex){
+                    return({name: value.name, state: to})
+                } else {
+                    return({name: value.name, state: value.state})
+                }
+            })
+            console.log(rewriter)
+            return(rewriter)
+            
+        })
+    } 
+
+    const removeToDoListChild = (onRemoveIndex) => {
+        setListOfToDo((oldList) => {
+            const rewriter = oldList.map((value, index) => {
+                if(index == onRemoveIndex){
+                    return({name: value.name, state: 5}) // 5 is for removed elements
+                } else {
+                    return({name: value.name, state: value.state})
+                }
+            })
+            console.log(rewriter)
+            return(rewriter)
+        })
+    }
+
+    let commentsList = [{
+        name: "Ho1Ai",
+        comment: "Дыня камень отец"
+    },{
+        name: "test",
+        comment: "test"
+    }]
 
     return (<>
         <WorkspaceHeader />
@@ -33,6 +78,14 @@ const ProjectMainPage = () => {
         projectLinksArray={projectInfo.projectLinksArray} 
         authorTeam={projectInfo.authorTeam} 
         authorsList={projectInfo.authorsList} />    
+
+        <ProjectToDoList rmStatus = {removeToDoListChild} toDoListContent = {listOfToDo} changeStatus = {changeToDoListChildStatus}/>
+
+        {/* дальше создать здесь docs с помощью Amber */}
+
+        {/* комментарии */}
+
+        <CommentsList list = {commentsList}/>
     </>)
 }
 

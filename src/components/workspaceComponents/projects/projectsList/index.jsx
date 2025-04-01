@@ -12,8 +12,15 @@ const ProjectsList = () => {
     }
 ])
 
+    const createProject = () => {
+        setProjectsInfoList((old) => {
+            return([...old, {name: 'test',link: 'test'}])
+        })      
+    }
+
     return (
         <section className="projectsList">
+            <button onClick={createProject}></button>
             { 
                 projectsInfoList ? projectsInfoList.map((value, index) => { 
                     return(

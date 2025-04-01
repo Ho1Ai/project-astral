@@ -1,0 +1,72 @@
+.toDoListSection {
+    margin: 20px 30px 10px 30px;
+    border-radius: 10px;
+    background-color: #efefef;
+    display: flex;
+    justify-content: space-between; /* НИ В КОЕМ СЛУЧАЕ НЕ ВВОДИТЬ НА ДАННОЙ СТАДИИ flex-wrap: wrap;!!!*/
+    gap: 30px;
+    padding: 10px;
+}
+
+.toDoListWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+.toDoListSectionContentContainer {
+    min-width: 300px;
+    width: 50%; /* некоторая заготовка для адаптации. Так будет проще адаптировать под телефоны, ибо в дальнейшем просто media-запросы делать надо будет, а не возиться с размерами и выдумывать велосипед, чтобы не произошел перенос не дай бог. Поясняю себе на будущее, ибо я опять, вероятно, забью на пару недель, ибо опять время начинает играть со мной злую шутку */
+    height: 568px; /* экран у iPhone 5S/SE 1st Generation - 28px. Вписано чисто для того, чтобы в дальнейшем можно было адаптировать под них */
+    padding: 0;
+    border-radius: 10px;
+    background-color: #555555; /* лол, обожаю темные цвета. Мне нравится то, как он выглядит здесь. В будущем буду обновлять приложение (редизайн запланирован на обновление 2.0.0) */
+    box-shadow: 0px 0px 5px 1px #000;
+}
+
+.toDoListSectionContentContainer > ul {
+    overflow: scroll;
+    margin: 0;
+    height: auto;
+}
+
+.toDoListSectionContentContainer > header {
+    border-radius: 10px 10px 0px 0px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+.toDoListSectionContentContainer > header > h1 {
+    padding: 0px 10px;
+}
+
+.notStartedContainer > header {
+    background-color: red;
+    width: 100%;
+}
+
+.inProgressContent > header {
+    background-color: #f80;
+}
+
+.readyContent > header {
+    background-color: #0a0;
+}
+
+.freezedContent > header {
+    background-color: #888;
+}
+
+.listOfToDos > li {
+    text-decoration: none;
+    list-style: none;
+    background-color: #fff;
+}
+
+.toDoListSectionContentEachContainer {
+    background-color: #fff;
+    width: 100%;
+    color: #000;
+}
