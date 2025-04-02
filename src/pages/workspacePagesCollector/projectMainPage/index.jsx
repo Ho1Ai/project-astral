@@ -70,6 +70,20 @@ const ProjectMainPage = () => {
         comment: "test"
     }]
 
+    let [newToDoText, setNewToDoText] = useState('')
+
+    const appendToDo = () => {
+        setListOfToDo((old) => {
+            let test = [...old, {name: newToDoText, state: 1}];
+            return test;
+        })
+    }
+
+    const handleNewToDoNameChange = (e) => {
+        setNewToDoText(e.target.value)
+        console.log(newToDoText)
+    }
+
     return (<>
         <WorkspaceHeader />
 
@@ -77,9 +91,9 @@ const ProjectMainPage = () => {
         description={projectInfo.description} 
         projectLinksArray={projectInfo.projectLinksArray} 
         authorTeam={projectInfo.authorTeam} 
-        authorsList={projectInfo.authorsList} />    
+        authorsList={projectInfo.authorsList} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} toDoListContent = {listOfToDo} changeStatus = {changeToDoListChildStatus}/>
+        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {listOfToDo} changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 
