@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const ProjectsListInstance = (properties) => {
     return (
-        <Link className="projectsListInstance" to={{pathname: properties.link}}>
+        <Link className="projectsListInstance" to={{pathname: `projectInfo`, search: `${properties.link}`}}>
             <h3>
                 {properties.name}
             </h3>

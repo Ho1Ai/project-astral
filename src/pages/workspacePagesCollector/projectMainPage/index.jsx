@@ -1,10 +1,15 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import WorkspaceHeader from "../../../components/workspaceComponents/workspaceHeader"
 import ProjectInfo from "../../../components/workspaceComponents/projects/projectPage/projectInfo"
 import ProjectToDoList from "../../../components/workspaceComponents/projects/projectPage/toDo"
 import CommentsList from "../../../components/workspaceComponents/projects/projectPage/emeryComments"
+import axios from "axios"
+import { useSearchParams } from "react-router-dom"
 
 const ProjectMainPage = () => {
+    let [searchParams] = useSearchParams();
+    let projectName = searchParams.get('name') 
+
     let projectInfo = {
         //It is just a project page. I'm gonna take everything from API
         name: `Project Astral`,
@@ -19,6 +24,10 @@ const ProjectMainPage = () => {
         authorTeam: `Morlix Team`, //IDK what to do if it is empty... Maybe I'll replace it on "team of independent developers" or "independent developers"... or maybe this field will be required... well, I don't know
         authorsList: [`Ho1Ai`] //Yeah, I am the only developer at the moment... Well, I have a question: y am I speaking English in this component, but in "ProjectToDoList" I speak Russian?.. I don't know... Never mind
     }
+
+    useEffect(()=>{
+        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`)
+    }, [])    
 
     let [listOfToDo, setListOfToDo] = useState([
         {
@@ -70,6 +79,20 @@ const ProjectMainPage = () => {
         comment: "test"
     }]
 
+    let [newToDoText, setNewToDoText] = useState('')
+
+    const appendToDo = () => {
+        setListOfToDo((old) => {
+            let test = [...old, {name: newToDoText, state: 1}];
+            return test;
+        })
+    }
+
+    const handleNewToDoNameChange = (e) => {
+        setNewToDoText(e.target.value)
+        console.log(newToDoText)
+    }
+
     return (<>
         <WorkspaceHeader />
 
@@ -77,9 +100,9 @@ const ProjectMainPage = () => {
         description={projectInfo.description} 
         projectLinksArray={projectInfo.projectLinksArray} 
         authorTeam={projectInfo.authorTeam} 
-        authorsList={projectInfo.authorsList} />    
+        authorsList={projectInfo.authorsList} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} toDoListContent = {listOfToDo} changeStatus = {changeToDoListChildStatus}/>
+        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {listOfToDo} changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 

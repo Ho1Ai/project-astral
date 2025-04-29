@@ -1,16 +1,22 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 import ProjectsListInstance from "./projectsListInstance"
 
 import './index.css'
 
 const ProjectsList = () => {
+    let user = "Ho1Ai"
     let [projectsInfoList, setProjectsInfoList] = useState([
         {
         name: 'Project Astral',
         link: '/indev/projects/projectInfo', //it is in development. Now it will open project page just using link, but in the end it will use projects name
     }
 ])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:8000/api/projects/get-available-projects?username=${user}`).then(res => setProjectsInfoList(res.data))
+    }, [])
 
     const createProject = () => {
         setProjectsInfoList((old) => {
@@ -23,6 +29,7 @@ const ProjectsList = () => {
             <button onClick={createProject}></button>
             { 
                 projectsInfoList ? projectsInfoList.map((value, index) => { 
+                    console.log(value)
                     return(
                         <ProjectsListInstance key={index} name={value.name} link={value.link}/>
                     )

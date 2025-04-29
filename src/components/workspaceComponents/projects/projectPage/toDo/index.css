@@ -3,9 +3,47 @@
     border-radius: 10px;
     background-color: #efefef;
     display: flex;
-    justify-content: space-between; /* НИ В КОЕМ СЛУЧАЕ НЕ ВВОДИТЬ НА ДАННОЙ СТАДИИ flex-wrap: wrap;!!!*/
+    flex-direction: column;
+    gap: 30px;
+    /* justify-content: space-between; НИ В КОЕМ СЛУЧАЕ НЕ ВВОДИТЬ НА ДАННОЙ СТАДИИ flex-wrap: wrap;!!! */
     gap: 30px;
     padding: 10px;
+}
+
+.toDoAppender {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 60px;
+    border-radius: 5px;
+    height: 60px;
+    border: 2px solid black;
+}
+
+.appendToDo {
+    background: transparent;
+    color: black;
+    outline: none;
+    height: 60px;
+    border: 0;
+    font-size: 16px;
+}
+
+.confirmToDoAppending{
+    height: 60px;
+    width: 60px;
+    border: 0;
+    color: black;
+    font-weight: 900;
+    font-style: 18px;
+    background: transparent;
+    transition: .25s all ease-in-out;
+}
+
+.confirmToDoAppending:hover {
+    color: white;
+    background-color: #000;
+    box-shadow: 0px 0px 3px black;
+    cursor: pointer;
 }
 
 .toDoListWrapper {
@@ -23,6 +61,8 @@
     border-radius: 10px;
     background-color: #555555; /* лол, обожаю темные цвета. Мне нравится то, как он выглядит здесь. В будущем буду обновлять приложение (редизайн запланирован на обновление 2.0.0) */
     box-shadow: 0px 0px 5px 1px #000;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .toDoListSectionContentContainer > ul {
@@ -65,8 +105,73 @@
     background-color: #fff;
 }
 
+
+
 .toDoListSectionContentEachContainer {
     background-color: #fff;
     width: 100%;
     color: #000;
+    display: flex;
+    justify-content: space-between;
+    min-height: 50px;
+    vertical-align: middle;
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 100%;
+}
+
+.innerTDL_ContentPart {
+    max-width: 75%;
+}
+
+
+.innerTDL_ControlButtonReady {
+    background-color: #0a0;
+}
+
+.innerTDL_ControlButtonInProgress {
+    background-color: #f80;
+}
+
+.innerTDL_ControlButtons {
+    font-size: 16px;
+    transition: all .25s linear;
+    outline: 0;
+    border: 0;
+    font-weight: 700;
+}
+
+.innerTDL_ControlButtons:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 3px black;
+}
+
+.innerTDL_ContentPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    word-break: break-all;
+}
+
+.innerTDL__ControlButtonsContainer {
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    min-width: 150px;
+    min-height: 50px;
+    height: 100%;
+}
+
+.innerTDL_ControlButtonFreezed {
+    border-radius: 0px 0px 0px 10px;
+    background-color: #888;
+}
+
+.innerTDL_ControlButtonNSt {
+    border-radius: 0px 0px 0px 10px;
+    background-color: red;
 }
