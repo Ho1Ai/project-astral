@@ -25,22 +25,25 @@ const ProjectMainPage = () => {
         authorsList: [`Ho1Ai`] //Yeah, I am the only developer at the moment... Well, I have a question: y am I speaking English in this component, but in "ProjectToDoList" I speak Russian?.. I don't know... Never mind
     }
 
+    let [projectInformationContainer, setProjectsInformationContainer] = useState({project_main_info:[{name:'', description:'', authorTeam: '', authorsList: [''], projectLinksArray: [{name:'', link:''}]}]})
+
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`)
+        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => setProjectsInformationContainer(res.data))
+
     }, [])    
 
-    let [listOfToDo, setListOfToDo] = useState([
-        {
-            name: `Make an Application`,
-            state: 1 // states: 1 (blue) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
-        },{
-            name: `Build a Project`,
-            state: 1 // states: 1 (blue) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
-        },{
-            name: `Deploy a Project`,
-            state: 1 // states: 1 (red) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
-        }
-    ]) //also gonna take everything from server, but it will be placed in another array, cuz I wanna change it on clients side
+    // let [listOfToDo, setListOfToDo] = useState([
+    //     {
+    //         name: `Make an Application`,
+    //         state: 1 // states: 1 (blue) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
+    //     },{
+    //         name: `Build a Project`,
+    //         state: 1 // states: 1 (blue) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
+    //     },{
+    //         name: `Deploy a Project`,
+    //         state: 1 // states: 1 (red) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
+    //     }
+    // ]) //also gonna take everything from server, but it will be placed in another array, cuz I wanna change it on clients side
 
     const changeToDoListChildStatus = (onChangeIndex, to) => {
         setListOfToDo((oldList)=>{
@@ -58,17 +61,17 @@ const ProjectMainPage = () => {
     } 
 
     const removeToDoListChild = (onRemoveIndex) => {
-        setListOfToDo((oldList) => {
-            const rewriter = oldList.map((value, index) => {
-                if(index == onRemoveIndex){
-                    return({name: value.name, state: 5}) // 5 is for removed elements
-                } else {
-                    return({name: value.name, state: value.state})
-                }
-            })
-            console.log(rewriter)
-            return(rewriter)
-        })
+        // setListOfToDo((oldList) => {
+        //     const rewriter = oldList.map((value, index) => {
+        //         if(index == onRemoveIndex){
+        //             return({name: value.name, state: 5}) // 5 is for removed elements
+        //         } else {
+        //             return({name: value.name, state: value.state})
+        //         }
+        //     })
+        //     console.log(rewriter)
+        //     return(rewriter)
+        // })
     }
 
     let commentsList = [{
@@ -82,10 +85,10 @@ const ProjectMainPage = () => {
     let [newToDoText, setNewToDoText] = useState('')
 
     const appendToDo = () => {
-        setListOfToDo((old) => {
-            let test = [...old, {name: newToDoText, state: 1}];
-            return test;
-        })
+        // setListOfToDo((old) => {
+        //     let test = [...old, {name: newToDoText, state: 1}];
+        //     return test;
+        // })
     }
 
     const handleNewToDoNameChange = (e) => {
@@ -93,16 +96,18 @@ const ProjectMainPage = () => {
         console.log(newToDoText)
     }
 
+    console.log("project information container goes here: ", projectInformationContainer)
+
     return (<>
         <WorkspaceHeader />
 
-        <ProjectInfo name={projectInfo.name} 
-        description={projectInfo.description} 
-        projectLinksArray={projectInfo.projectLinksArray} 
-        authorTeam={projectInfo.authorTeam} 
-        authorsList={projectInfo.authorsList} />
+        <ProjectInfo name={projectInformationContainer.project_main_info[0].name} 
+        description={projectInformationContainer.project_main_info[0].description} 
+        projectLinksArray={projectInformationContainer.project_main_info[0].projectLinksArray} 
+        authorTeam={projectInformationContainer.project_main_info[0].authorTeam} 
+        authorsList={projectInformationContainer.project_main_info[0].authorsList} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {listOfToDo} changeStatus = {changeToDoListChildStatus}/>
+        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {projectInformationContainer.to_do_list} changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 

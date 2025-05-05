@@ -11,6 +11,7 @@ const ProjectsList = () => {
         {
         name: 'Project Astral',
         link: '/indev/projects/projectInfo', //it is in development. Now it will open project page just using link, but in the end it will use projects name
+        "project-name":"project-astral"
     }
 ])
 
@@ -30,8 +31,9 @@ const ProjectsList = () => {
             { 
                 projectsInfoList ? projectsInfoList.map((value, index) => { 
                     console.log(value)
+                    console.log(Object.keys(projectsInfoList))
                     return(
-                        <ProjectsListInstance key={index} name={value.name} link={value.link}/>
+                        <ProjectsListInstance key={index} name={value.name} link={value.project_link}/>
                     )
                 }) : //<p>There is no projects yet, but, we hope, they will appear here soon :D</p>
                 console.log('no projects yet. Leaving projects list with no instances')
