@@ -96,6 +96,14 @@ const ProjectMainPage = () => {
         console.log(newToDoText)
     }
 
+    const updateToDoState = (targetId, newState) => {
+        axios.put('http://localhost:8000/api/projects/update-todo', {
+            "id":targetId,
+            "name":"default", // no need in name, because it only updates to do using tagretId
+            "new_state":newState,
+        })
+    }
+
     console.log("project information container goes here: ", projectInformationContainer)
 
     return (<>
@@ -107,7 +115,7 @@ const ProjectMainPage = () => {
         authorTeam={projectInformationContainer.project_main_info[0].authorTeam} 
         authorsList={projectInformationContainer.project_main_info[0].authorsList} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {projectInformationContainer.to_do_list} changeStatus = {changeToDoListChildStatus}/>
+        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} updateToDoState = {updateToDoState} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {projectInformationContainer.to_do_list} changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 

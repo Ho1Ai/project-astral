@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './index.css'
 
+
+//very hard to explain why did I place all headers here... never mind
+
 const ProjectToDoList = (properties) => {
     // const changeStatus = (index) => {
     //     properties.changeStatus(index)
@@ -42,7 +45,7 @@ const ProjectToDoList = (properties) => {
                                                     properties.changeStatus(index, 2)}
                                                 } className='innerTDL_ControlButtons innerTDL_ControlButtonInProgress '>→</button>
                                                 <button onClick={() => {
-                                                    properties.changeStatus(index, 3)}
+                                                    properties.updateToDoState(index, 3)}
                                                     
                                                 } className='innerTDL_ControlButtonReady innerTDL_ControlButtons'>✓</button>
                                             </div>
