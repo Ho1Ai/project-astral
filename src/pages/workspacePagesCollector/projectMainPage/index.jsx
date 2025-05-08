@@ -45,18 +45,24 @@ const ProjectMainPage = () => {
     //     }
     // ]) //also gonna take everything from server, but it will be placed in another array, cuz I wanna change it on clients side
 
-    const changeToDoListChildStatus = (onChangeIndex, to) => {
+    const changeToDoListChildStatus = (targetId, onChangeIndex, to) => {
         setListOfToDo((oldList)=>{
             const rewriter = oldList.map((value, index) => {
                 if(index == onChangeIndex){
-                    return({name: value.name, state: to})
+                    return({id: value.name, name: value.name, state: to})
                 } else {
-                    return({name: value.name, state: value.state})
+                    return({id: value.name, name: value.name, state: value.state})
                 }
             })
             console.log(rewriter)
             return(rewriter)
             
+        })
+
+        axios.put('http://localhost:8000/api/projects/update-status', {
+            'id': targetId,
+            'name': 'default',
+            'state': to
         })
     } 
 
