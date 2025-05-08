@@ -6,7 +6,7 @@ import ProjectsListInstance from "./projectsListInstance"
 import './index.css'
 
 const ProjectsList = () => {
-    let user = "Ho1Ai"
+    let user = "Ho1Ai" //cork
     let [projectsInfoList, setProjectsInfoList] = useState([
         {
         name: 'Project Astral',
