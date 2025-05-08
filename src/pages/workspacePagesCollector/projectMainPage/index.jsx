@@ -103,11 +103,7 @@ const ProjectMainPage = () => {
     }
 
     const updateToDoState = (targetId, newState) => {
-        axios.put('http://localhost:8000/api/projects/update-todo', {
-            "id":targetId,
-            "name":"default", // no need in name, because it only updates to do using tagretId
-            "new_state":newState,
-        })
+        axios.get(`http://localhost:8000/api/projects/update-todo?id=${targetId}&new_state=${newState}`) // temp solution
     }
 
     console.log("project information container goes here: ", projectInformationContainer)
