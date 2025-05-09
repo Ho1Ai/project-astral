@@ -142,6 +142,10 @@
     font-weight: 700;
 }
 
+.innerTDL_ControlButtons.innerTDL_ControlButtonArchieve {
+    background-color: #00aaff;
+}
+
 .innerTDL_ControlButtons:hover {
     background-color: white;
     color: black;
@@ -174,4 +178,32 @@
 .innerTDL_ControlButtonNSt {
     border-radius: 0px 0px 0px 10px;
     background-color: red;
+}
+
+
+.sectionTDL_archieveTag {
+    color: #000;
+}
+
+.sectionTDL_openArchieveButton {
+    color: #000;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.sectionTDL_archieveHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sectionTDL_archieveList {
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.sectionTDL_archieveList > li {
+    color: #000;
+    list-style: none;
 }

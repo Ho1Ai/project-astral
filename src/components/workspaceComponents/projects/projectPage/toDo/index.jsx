@@ -5,6 +5,8 @@ import './index.css'
 //very hard to explain why did I place all headers here... never mind
 
 const ProjectToDoList = (properties) => {
+    const[archieveVisible, setArchieveVisible] = useState(false)
+
     // const changeStatus = (index) => {
     //     properties.changeStatus(index)
     // }
@@ -39,13 +41,13 @@ const ProjectToDoList = (properties) => {
                                             </div>
                                             <div className='innerTDL__ControlButtonsContainer '>
                                                 <button onClick={() => {
-                                                        properties.changeStatus(index, 4)}          
+                                                        properties.changeStatus(value.id, 0, 4)}          
                                                 } className='innerTDL_ControlButtonFreezed innerTDL_ControlButtons'>X</button>
                                                 <button onClick={() => {
-                                                    properties.changeStatus(index, 2)}
+                                                    properties.changeStatus(value.id, 0, 2)}
                                                 } className='innerTDL_ControlButtons innerTDL_ControlButtonInProgress '>→</button>
                                                 <button onClick={() => {
-                                                    properties.updateToDoState(index, 3)}
+                                                    properties.changeStatus(value.id, 0, 3)}
                                                     
                                                 } className='innerTDL_ControlButtonReady innerTDL_ControlButtons'>✓</button>
                                             </div>
@@ -75,7 +77,7 @@ const ProjectToDoList = (properties) => {
                                                 {value.name}
                                             </h1>
                                             <button onClick={() => {
-                                                properties.changeStatus(index, 3)}
+                                                properties.changeStatus(value.id, 0, 3)}
                                             }>change status ("Ready")</button>
                                         </div>
                                     </li>
@@ -99,12 +101,25 @@ const ProjectToDoList = (properties) => {
                                     /*<li key={index}>{value.name}</li>*/
                                     <li key={index}>
                                         <div className='toDoListSectionContentEachContainer' style={{ borderTop: "2px solid black"}}>
-                                            <h1 style={{margin:0}}>
-                                                {value.name}
-                                            </h1>
-                                            <button onClick={() => {
-                                                properties.rmStatus(index)}
-                                            }>Remove from list</button>
+                                            <div className="innerTDL_ContentPart">
+
+                                                <h1 style={{margin:0}}>
+                                                    {value.name}
+                                                </h1>
+                                            </div>                            
+                                            
+                                            <div className='innerTDL__ControlButtonsContainer '>
+                                                <button onClick={() => {
+                                                    properties.changeStatus(value.id, 0, 1)}          
+                                                } className='innerTDL_ControlButtonNSt innerTDL_ControlButtons'>←</button>
+                                                 <button onClick={() => {
+                                                    properties.changeStatus(value.id, 0, 2)}
+                                                } className='innerTDL_ControlButtons innerTDL_ControlButtonInProgress '>→</button>
+                                                <button onClick={() => {
+                                                    properties.changeStatus(value.id, 0, 0)}
+                                                } className='innerTDL_ControlButtons innerTDL_ControlButtonArchieve'>↓</button>
+
+                                            </div>
                                         </div>
                                     </li>
                                 )
@@ -134,13 +149,13 @@ const ProjectToDoList = (properties) => {
                                             </div>
                                             <div className='innerTDL__ControlButtonsContainer '>
                                                 <button onClick={() => {
-                                                        properties.changeStatus(index, 1)}          
+                                                        properties.changeStatus(value.id, 0, 1)}          
                                                 } className='innerTDL_ControlButtonNSt innerTDL_ControlButtons'>←</button>
                                                 <button onClick={() => {
-                                                    properties.changeStatus(index, 2)}
+                                                    properties.changeStatus(value.id, 0, 2)}
                                                 } className='innerTDL_ControlButtons innerTDL_ControlButtonInProgress '>→</button>
                                                 <button onClick={() => {
-                                                    properties.changeStatus(index, 3)}
+                                                    properties.changeStatus(value.id, 0, 3)}
                                                     
                                                 } className='innerTDL_ControlButtonReady innerTDL_ControlButtons'>✓</button>
                                             </div>
@@ -151,6 +166,21 @@ const ProjectToDoList = (properties) => {
                         }
                     </div>
                 </div>
+            </div>
+            <div className='sectionTDL_archieve'>
+                <header className='sectionTDL_archieveHeader'> {/* it would be a great idea to place this stuff somewhere in different file (also as TDL type sections), but it is easier to check this stuff here. Never mind, this part of frontend is written by me, so I understand what and where I place. It is just a prototype for frontend and it will be redisigned */}
+                    <h2 className='sectionTDL_archieveTag'>Archieved:</h2>
+                    <button className='sectionTDL_openArchieveButton' onClick={()=>setArchieveVisible(!archieveVisible)}>Open</button> 
+                </header>
+                {archieveVisible && <ul className="sectionTDL_archieveList">
+                    {properties.toDoListContent?properties.toDoListContent.map((value, index) => {
+                        if (value.state == 0) {
+                            return (<li>
+                                {value.name}
+                            </li>)
+                        }
+                    }):console.log('archieve is empty')}
+                </ul>}
             </div>
         </section>    
     )

@@ -2,7 +2,7 @@ const ProjectLinks = (properties) => {
     return(
         <section className="projectInfoChildInstance">
             <div className="container">
-                <h1>Links</h1>
+                <h2>Links</h2>
 
                 {properties.projectLinksArray ? properties.projectLinksArray.map ((value, index) => {
                     return(<a key={index}  href={value.link}>{value.name}</a>)

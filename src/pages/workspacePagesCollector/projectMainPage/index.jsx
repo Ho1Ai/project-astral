@@ -10,26 +10,25 @@ const ProjectMainPage = () => {
     let [searchParams] = useSearchParams();
     let projectName = searchParams.get('name') 
 
-    let projectInfo = {
-        //It is just a project page. I'm gonna take everything from API
-        name: `Project Astral`,
-        projectLinksArray: [
-            {
-                name: `GitHub`,
-                link: `https://github.com/Ho1Ai/project-astral`
-            }
+    // let projectInfo = {
+    //     //It is just a project page. I'm gonna take everything from API
+    //     name: `Project Astral`,
+    //     projectLinksArray: [
+    //         {
+    //             name: `GitHub`,
+    //             link: `https://github.com/Ho1Ai/project-astral`
+    //         }
             
-        ],
-        description: `Project Astral - application for developers and their projects. Our main purpose is to create an application which can be used for free. You can make forks: it is open source. You can find everything (except backend) on GitHub. You can share your ideas on our Discord server. Together we can make good projects! We (especially me, Ho1Ai) wish you all the best. Good luck, y'all!`,
-        authorTeam: `Morlix Team`, //IDK what to do if it is empty... Maybe I'll replace it on "team of independent developers" or "independent developers"... or maybe this field will be required... well, I don't know
-        authorsList: [`Ho1Ai`] //Yeah, I am the only developer at the moment... Well, I have a question: y am I speaking English in this component, but in "ProjectToDoList" I speak Russian?.. I don't know... Never mind
-    }
+    //     ],
+    //     description: `Project Astral - application for developers and their projects. Our main purpose is to create an application which can be used for free. You can make forks: it is open source. You can find everything (except backend) on GitHub. You can share your ideas on our Discord server. Together we can make good projects! We (especially me, Ho1Ai) wish you all the best. Good luck, y'all!`,
+    //     authorTeam: `Morlix Team`, //IDK what to do if it is empty... Maybe I'll replace it on "team of independent developers" or "independent developers"... or maybe this field will be required... well, I don't know
+    //     authorsList: [`Ho1Ai`] //Yeah, I am the only developer at the moment... Well, I have a question: y am I speaking English in this component, but in "ProjectToDoList" I speak Russian?.. I don't know... Never mind       // Update on 2025/05/08: forgot to say that we have a small team at the moment
+    // }
 
     let [projectInformationContainer, setProjectsInformationContainer] = useState({project_main_info:[{name:'', description:'', authorTeam: '', authorsList: [''], projectLinksArray: [{name:'', link:''}]}]})
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => setProjectsInformationContainer(res.data))
-
     }, [])    
 
     // let [listOfToDo, setListOfToDo] = useState([
@@ -46,24 +45,32 @@ const ProjectMainPage = () => {
     // ]) //also gonna take everything from server, but it will be placed in another array, cuz I wanna change it on clients side
 
     const changeToDoListChildStatus = (targetId, onChangeIndex, to) => {
-        setListOfToDo((oldList)=>{
-            const rewriter = oldList.map((value, index) => {
-                if(index == onChangeIndex){
-                    return({id: value.name, name: value.name, state: to})
-                } else {
-                    return({id: value.name, name: value.name, state: value.state})
-                }
-            })
-            console.log(rewriter)
-            return(rewriter)
+        // setListOfToDo((oldList)=>{
+        //     const rewriter = oldList.map((value, index) => {
+        //         if(index == onChangeIndex){
+        //             return({id: value.name, name: value.name, state: to})
+        //         } else {
+        //             return({id: value.name, name: value.name, state: value.state})
+        //         }
+        //     })
+        //     console.log(rewriter)
+        //     return(rewriter)
             
-        })
+        // })
 
-        axios.put('http://localhost:8000/api/projects/update-status', {
+        // console.log('пенис жопа вазелин', targetId, typeof(targetId), to, typeof(to))
+        
+        axios.put('http://localhost:8000/api/projects/update-todo', {
             'id': targetId,
             'name': 'default',
             'state': to
+        }, {
+            headers: {
+                "Content-Type":"application/json"
+            }
         })
+
+        
     } 
 
     const removeToDoListChild = (onRemoveIndex) => {
@@ -95,6 +102,23 @@ const ProjectMainPage = () => {
         //     let test = [...old, {name: newToDoText, state: 1}];
         //     return test;
         // })
+
+        console.log('new to do:', newToDoText, typeof(newToDoText))
+
+        if(newToDoText==""){
+            alert(`to do list can't keep empty strings`)
+            return
+        }
+
+        if(typeof(newToDoText) !== "string"){
+            alert(`to do list can keep only that entities, which are named with text. It means: \n1. You can't keep numbers;\n2.You can't keep empty string`) 
+            return //once I've received this exception, so now I don't wanna have any problems with this stuff
+        }
+
+        axios.post('http://localhost:8000/api/projects/append-todo', {
+            name: newToDoText,
+            state: 1
+        })
     }
 
     const handleNewToDoNameChange = (e) => {
@@ -102,11 +126,15 @@ const ProjectMainPage = () => {
         console.log(newToDoText)
     }
 
-    const updateToDoState = (targetId, newState) => {
-        axios.get(`http://localhost:8000/api/projects/update-todo?id=${targetId}&new_state=${newState}`) // temp solution
-    }
+    // const updateToDoState = async(targetId, newState) => {
+    //      axios.put(`http://localhost:8000/api/projects/update-todo`, {
+    //         "id": targetId,
+    //         "name": "default",
+    //         "new_state": newState
+    //      }) // temp solution // yeah, now there is no need in this piece of code
+    // }
 
-    console.log("project information container goes here: ", projectInformationContainer)
+    // console.log("project information container goes here: ", projectInformationContainer)
 
     return (<>
         <WorkspaceHeader />
@@ -117,13 +145,15 @@ const ProjectMainPage = () => {
         authorTeam={projectInformationContainer.project_main_info[0].authorTeam} 
         authorsList={projectInformationContainer.project_main_info[0].authorsList} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} updateToDoState = {updateToDoState} handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {projectInformationContainer.to_do_list} changeStatus = {changeToDoListChildStatus}/>
+        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} /*updateToDoState = {updateToDoState}*/ handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {projectInformationContainer.to_do_list} changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 
         {/* комментарии */}
 
-        <CommentsList list = {commentsList}/>
+        {/* at the moment there is no need in comments. Btw, now I use English */}
+
+        {/* <CommentsList list = {commentsList}/> */}
     </>)
 }
 
