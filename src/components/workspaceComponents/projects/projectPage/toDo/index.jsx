@@ -15,7 +15,7 @@ const ProjectToDoList = (properties) => {
     return (
         <section className="toDoListSection">
             <div className="toDoAppender">
-                <input type="text" className="appendToDo" onChange={properties.handleNewToDoNameChange}/>
+                <input type="text" className="appendToDo" onChange={properties.handleNewToDoNameChange} value={properties.input_value}/>
                 <button className='confirmToDoAppending' onClick={properties.appendToDo}>+</button>
             </div>
             <div className='toDoListWrapper'>
@@ -73,12 +73,23 @@ const ProjectToDoList = (properties) => {
                                     /*<li key={index}>{value.name}</li>*/
                                     <li key={index}>
                                         <div className='toDoListSectionContentEachContainer' style={{ borderTop: "2px solid black"}}>
-                                            <h1 style={{margin:0}}>
-                                                {value.name}
-                                            </h1>
-                                            <button onClick={() => {
-                                                properties.changeStatus(value.id, 0, 3)}
-                                            }>change status ("Ready")</button>
+                                            <div className="innerTDL_ContentPart">
+                                                <h1 style={{margin:0}}>
+                                                    {value.name}
+                                                </h1>
+                                            </div>
+                                            
+                                            <div className='innerTDL__ControlButtonsContainer '>
+                                                <button onClick={() => {
+                                                        properties.changeStatus(value.id, 0, 4)}          
+                                                } className='innerTDL_ControlButtonFreezed innerTDL_ControlButtons'>X</button>
+                                                <button onClick={() => {
+                                                    properties.changeStatus(value.id, 0, 1)}          
+                                                } className='innerTDL_ControlButtonNSt innerTDL_stdBtn innerTDL_ControlButtons'>←</button>
+                                                <button onClick={() => {
+                                                        properties.changeStatus(value.id, 0, 3)}    
+                                                } className='innerTDL_ControlButtonReady innerTDL_ControlButtons'>✓</button>
+                                            </div>
                                         </div>
                                     </li>
                                 )

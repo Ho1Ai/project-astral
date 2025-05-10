@@ -25,10 +25,10 @@ const ProjectMainPage = () => {
     //     authorsList: [`Ho1Ai`] //Yeah, I am the only developer at the moment... Well, I have a question: y am I speaking English in this component, but in "ProjectToDoList" I speak Russian?.. I don't know... Never mind       // Update on 2025/05/08: forgot to say that we have a small team at the moment
     // }
 
-    let [projectInformationContainer, setProjectsInformationContainer] = useState({project_main_info:[{name:'', description:'', authorTeam: '', authorsList: [''], projectLinksArray: [{name:'', link:''}]}]})
+    let [projectInformationContainer, setProjectInformationContainer] = useState({project_main_info:[{name:'', description:'', authorTeam: '', authorsList: [''], projectLinksArray: [{name:'', link:''}]}]})
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => setProjectsInformationContainer(res.data))
+        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => setProjectInformationContainer(res.data))
     }, [])    
 
     // let [listOfToDo, setListOfToDo] = useState([
@@ -43,6 +43,20 @@ const ProjectMainPage = () => {
     //         state: 1 // states: 1 (red) - Not Started; 2 (yellow) - in process; 3 (green) - ready; 4 (gray) - freezed
     //     }
     // ]) //also gonna take everything from server, but it will be placed in another array, cuz I wanna change it on clients side
+
+    const updateTDL = (new_TDL_data) => {
+        // setProjectInformationContainer((old) => {
+        //     console.log(old)
+        // })
+        console.log(new_TDL_data, projectInformationContainer)
+        setProjectInformationContainer((old) => {
+            console.log(old.to_do_list)            
+            return {
+                project_main_info: old.project_main_info, 
+                to_do_list: new_TDL_data.new_TDL
+            }
+        })
+    }
 
     const changeToDoListChildStatus = (targetId, onChangeIndex, to) => {
         // setListOfToDo((oldList)=>{
@@ -68,6 +82,8 @@ const ProjectMainPage = () => {
             headers: {
                 "Content-Type":"application/json"
             }
+        }).then(response => {
+            updateTDL(response.data)
         })
 
         
@@ -118,7 +134,9 @@ const ProjectMainPage = () => {
         axios.post('http://localhost:8000/api/projects/append-todo', {
             name: newToDoText,
             state: 1
-        })
+        }).then((response) => {updateTDL(response.data)})
+
+        setNewToDoText('')
     }
 
     const handleNewToDoNameChange = (e) => {
@@ -145,7 +163,13 @@ const ProjectMainPage = () => {
         authorTeam={projectInformationContainer.project_main_info[0].authorTeam} 
         authorsList={projectInformationContainer.project_main_info[0].authorsList} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} appendToDo = {appendToDo} /*updateToDoState = {updateToDoState}*/ handleNewToDoNameChange = {handleNewToDoNameChange} toDoListContent = {projectInformationContainer.to_do_list} changeStatus = {changeToDoListChildStatus}/>
+        <ProjectToDoList rmStatus = {removeToDoListChild} 
+        input_value = {newToDoText}  
+        appendToDo = {appendToDo} 
+        /*updateToDoState = {updateToDoState}*/ 
+        handleNewToDoNameChange = {handleNewToDoNameChange} 
+        toDoListContent = {projectInformationContainer.to_do_list} 
+        changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 

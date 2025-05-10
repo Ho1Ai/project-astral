@@ -207,3 +207,7 @@
     color: #000;
     list-style: none;
 }
+
+.innerTDL_stdBtn {
+    border-radius: 0; /* bug fix for red button in "In progress" column */
+}

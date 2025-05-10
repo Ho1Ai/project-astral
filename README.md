@@ -15,3 +15,9 @@ Yeah, it is a project by Collapse Open-Source Team. It is better to keep it here
 there is some things I used in the beggining. You had better know about these things:
     - .totmb is same to .md or .txt (just document with text, no more)
     - Somewhere you can see comments like this: " /* ember styles */ ". Maybe it is strange to see "Ember"/"Amber"... who is "Ember"/"Amber"?.. Well, "Ember"/"Amber" is... let's call it "subapplication"... it is a subapplication for notes (subapplication cuz I was making this stuff as another application). It is easier for me to call it like that, but in the future I'm gonna remove this name and it will become just "notes"
+
+# Updates
+Since 2025/05/09 we are making update list:
+    - previously: added landing page, static content for profile, static content for projects list, static content for project page. Then moved static content to backend and marked as "static content"
+    - 00006p (2025/05/09) - added something to backend. This project is still the only project, which can be opened, because we are just testing these things. Added "Updates" title. Since 00006p you can update to do list entities, but the page still does not update to do list entities status until you update page. I have some ideas how to fix it, but didn't do it (sry, forgot about it). Backend still doesn't use databases, but it will be added very soon. Comments for project page have been removed, because they have no usable case at the moment, so we're gonna bring them back in 01010b or 1.0.0 (may be marked as 11000r.01)
+    - 00007p (2025/05/10, approximately 4.20 p.m.) - now you can append any things to to do list in project. Also it updates to do list when you are sending any changes to server
