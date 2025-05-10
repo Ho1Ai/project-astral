@@ -9,7 +9,6 @@ import { useSearchParams } from "react-router-dom"
 const ProjectMainPage = () => {
     let [searchParams] = useSearchParams();
     let projectName = searchParams.get('name') 
-
     // let projectInfo = {
     //     //It is just a project page. I'm gonna take everything from API
     //     name: `Project Astral`,
@@ -29,6 +28,7 @@ const ProjectMainPage = () => {
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => setProjectInformationContainer(res.data))
+        console.log(projectName)
     }, [])    
 
     // let [listOfToDo, setListOfToDo] = useState([

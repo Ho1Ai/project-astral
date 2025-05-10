@@ -10,7 +10,7 @@ const ProjectsList = () => {
     let [projectsInfoList, setProjectsInfoList] = useState([
         {
         name: 'Project Astral',
-        link: '/indev/projects/projectInfo', //it is in development. Now it will open project page just using link, but in the end it will use projects name
+        project_link: '/indev/projects/projectInfo?project-astral', //it is in development. Now it will open project page just using link, but in the end it will use projects name
         "project-name":"project-astral"
     }
 ])
@@ -21,13 +21,14 @@ const ProjectsList = () => {
 
     const createProject = () => {
         setProjectsInfoList((old) => {
-            return([...old, {name: 'test',link: 'test'}])
+            return([...old, {name: 'test',project_link: 'test'}])
         })      
     }
 
     return (
         <section className="projectsList">
-            <button onClick={createProject}></button>
+            <button onClick={createProject} className="innerPLP_appendProjButton">Create New Project</button>
+            {/* PLP = Project List Page */}
             { 
                 projectsInfoList ? projectsInfoList.map((value, index) => { 
                     console.log(value)
