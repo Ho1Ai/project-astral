@@ -5,7 +5,7 @@ import './index.css'
 //very hard to explain why did I place all headers here... never mind
 
 const ProjectToDoList = (properties) => {
-    const[archieveVisible, setArchieveVisible] = useState(false)
+    const[archieveVisible, setArchieveVisible] = useState(false) //by default archieve must be hidden. Didn't add ability to remove entities from archieve yet, but gonna add it soon
 
     // const changeStatus = (index) => {
     //     properties.changeStatus(index)

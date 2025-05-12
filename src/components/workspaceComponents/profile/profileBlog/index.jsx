@@ -23,7 +23,7 @@ const ProfileBlog = () => {
         <section className='profileBlogSection'>
             <div className="blogInputContainer">
                 <input type="text" className="profileBlogInput" value={newPostInputFieldInnerContent} onChange={onNewPostInputFieldChange}/>
-                <button onClick={writeNewPost} className='profileBlogInputSubmiter'>+</button>
+                <button onClick={writeNewPost} className='profileBlogInputSubmiter' disabled={true}>+</button>
             </div>
 
             <div className="postsListContainer">

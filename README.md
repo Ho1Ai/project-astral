@@ -28,3 +28,5 @@ Since 2025/05/09 we are making update list:
 - 00007p1s (2025/05/11, approximately 12.23 a.m.) - added some animations on project list page (marked as PLP in class lists) and finally changed text in button, which could create projects. Now gonna change some things connected with it (project creator and some things like this). Also gonna work on accounts
 
 - 00007p1s1q (2025/05/11, approximately 12.39 a.m.) - some changes in README.md
+
+<!-- - 00008p (2025/05/12) - disabled post adder button on profile page just to make profiles usable. Started adding some things to backend. Added modal window for project creation -->
