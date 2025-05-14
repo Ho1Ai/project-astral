@@ -1,0 +1,67 @@
+.innerPLP_createProjModalWindow {
+    max-width: 50vw;
+    color: black;
+    background-color: #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.innerPLP_createProjModalWindow > p {
+    font-size: 16px;
+}
+
+.innerPLP_createProjInput {
+    color: black;
+    background: transparent;
+    border: 2px solid black;
+    outline: none;
+    border-radius: 10px;
+    font-size: 13px;
+    padding: 10px;
+}
+
+textarea.innerPLP_createProjInput {
+    min-height: 150px;
+    max-height: 250px;
+}
+
+.innerPLP_linksEntity {
+    width: 100%;
+}
+
+.innerPLP_createProjButton {
+    border: 2px solid black;
+    font-size: 15px;
+    color: black;
+    background: transparent;
+    border-radius: 10px;
+    margin-top: 40px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all .25s linear;
+}
+
+.innerPLP_createProjButton:hover{
+    color: white;
+    background-color: #000;
+}
+
+.innerPLP_closeModalWindow {
+    color: #000;
+    background: transparent;
+    border: 0;
+    width: 30px;
+    cursor: pointer;
+}
+
+.innerPLP_headerContainer {
+    display: flex;
+    justify-content: space-between;
+}
