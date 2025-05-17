@@ -29,4 +29,4 @@ Since 2025/05/09 we are making update list:
 
 - 00007p1s1q (2025/05/11, approximately 12.39 a.m.) - some changes in README.md
 
-<!-- - 00008p (2025/05/12) - disabled post adder button on profile page just to make profiles usable. Started adding some things to backend. Added modal window for project creation -->
+- 00008p (2025/05/18, approximately 02.17 a.m.) - disabled post adder button on profile page just to make profiles usable. Started adding some things to backend. Added modal window for project creation and made some things for project creation. Now gonna add some things to backend for accounts and try to make this project way more usable. Next step is authorization.

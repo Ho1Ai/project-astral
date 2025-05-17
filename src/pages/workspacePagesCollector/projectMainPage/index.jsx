@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom"
 const ProjectMainPage = () => {
     let [searchParams] = useSearchParams();
     let projectName = searchParams.get('name') 
+    console.log(projectName)
     // let projectInfo = {
     //     //It is just a project page. I'm gonna take everything from API
     //     name: `Project Astral`,

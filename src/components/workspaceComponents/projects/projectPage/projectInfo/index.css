@@ -7,11 +7,19 @@
     /* background: #efefef; */
 }
 
+@media screen and (max-width: 1000px) {
+    .projectInfoSection {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 /* 
 .projectDescription {
 } */
 
 .projectInfoChildInstance {
+    min-width: 300px;
     background-color: #efefef;
     min-height: 200px;
     width: 100%; /* wow, it works with at least 34%, but I use 100%... well, "auto" doesn't work btw */

@@ -66,6 +66,7 @@
 }
 
 .toDoListSectionContentContainer > ul {
+    
     overflow: scroll;
     margin: 0;
     height: auto;
@@ -211,3 +212,36 @@
 .innerTDL_stdBtn {
     border-radius: 0; /* bug fix for red button in "In progress" column */
 }
+
+@media screen and (max-width: 1390px) {
+    .toDoListWrapper {
+        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+    }
+
+    .toDoListSectionContentContainer {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .toDoListWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .toDoListSectionContentContainer {
+        width: 100%;
+        min-width: 250px;        
+    }
+
+    .toDoListSectionContentEachContainer {
+        width: 100%;
+        min-width: 250px;
+    }
+}
+
+/* Yeah, I don't remember, which of them I need. I wanna sleep now, so I don't check it, lol */

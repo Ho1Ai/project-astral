@@ -14,7 +14,7 @@ const ProjectsList = () => {
     let [projectsInfoList, setProjectsInfoList] = useState([
         {
             name: 'Project Astral',
-            project_link: '/indev/projects/projectInfo?project-astral', //it is in development. Now it will open project page just using link, but in the end it will use projects name
+            proj_link: '/indev/projects/projectInfo?project-astral', //it is in development. Now it will open project page just using link, but in the end it will use projects name
             "project-name":"project-astral"
         }
     ])
@@ -42,7 +42,7 @@ const ProjectsList = () => {
     //fetching data from API 
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/projects/get-available-projects?username=${user}`).then(res => setProjectsInfoList(res.data))
+        axios.get(`http://localhost:8000/api/projects/get-available-projects?username=${user}`).then((res) => {setProjectsInfoList(res.data); console.log(res.data)})
     }, [])
 
 
@@ -77,6 +77,7 @@ const ProjectsList = () => {
                 description: newProjDesc,
                 authorTeam: newProjTeam,
                 authorsList: [], //it will stay empty at the moment
+                link: newProjName.toLocaleLowerCase().replace(' ', '-').replace('_','-') // two-step swap
                 /*projectLinks: {
                     'GitHub': newProjGH?newProjGH:null,
                     'YouTube':newProjYT?newProjYT:null,
@@ -121,7 +122,7 @@ const ProjectsList = () => {
                     // console.log(value)
                     // console.log(Object.keys(projectsInfoList))
                     return(
-                        <ProjectsListInstance key={index} does_work = {modalWindowState} name={value.name} link={value.project_link}/>
+                        <ProjectsListInstance key={index} name={value.name} link={value.proj_link}/>
                     )
                 }) : //<p>There is no projects yet, but, we hope, they will appear here soon :D</p>
                 console.log('no projects yet. Leaving projects list with no instances')
