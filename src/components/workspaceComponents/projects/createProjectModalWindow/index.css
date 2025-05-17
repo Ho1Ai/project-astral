@@ -1,9 +1,16 @@
 .innerPLP_createProjModalWindow {
+    position: fixed;
+    left: 50vw;
+    right: 50vw;
+    transform: translate(-50%, 0%);
     max-width: 50vw;
     color: black;
     background-color: #ddd;
     display: flex;
     flex-direction: column;
+    width: 50vw;
+    max-width: 600px;
+    min-width: 300px;
     justify-content: flex-start;
     max-height: 600px;
     overflow-y: scroll;
