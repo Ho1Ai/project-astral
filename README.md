@@ -1,3 +1,27 @@
+# Description
+
+Project Astral is a web application for projects task management, which use React JS on frontend and FastAPI on backend. 
+
+# How can I start it?
+
+You can start Project Astral locally. I don't use Windows (also as our team), so I don't know how to start it on Windows, but, if I'm not mistaking, you can start it using Git Bash. So, you have to do next:  
+`mkdir project-astral-dir && cd project-astral-dir && git clone https://github.com/Ho1Ai/project-astral && cd project-astral && npm i`  
+This line makes a local copy of frontend repository and downloads needed libraries  
+Then make a copy of backend repository:  
+`cd .. && git clone https://github.com/Ho1Ai/astral-server && cd astral-server`
+This line makes a local copy of backend repository. It has no file "requirements.txt" (because I don't use it), so I wrote requirements here:  
+- fastapi  
+- uvicorn  
+- asyncpg  
+If you wanna download all these libraries, just write next (venv is required. Wrote a line with venv creation):  
+`python3 -m venv venv && . venv/bin/activate && pip install fastapi uvicorn asyncpg`  
+NOTE: it may also require pydantic, so if it doesn't work because there are nothing called pydantic, just install pydantic using pip install pydantic  
+Then run backend: `uvicorn main:app --reload`
+
+Then go to `project-astral-dir/project-astral/` and write `npm run dev`  
+Then you can open this application using your browser. Go to https://localhost:5173
+
+
 # React + Vite
 
 For developers: 
@@ -9,14 +33,15 @@ For developers:
 Uploaded, because I don't wanna use Google Drive to share my project between my PC and laptop
 
 # Collapse Open-Source Team
-Yeah, it is a project by Collapse Open-Source Team. It is better to keep it here. In the beggining we had only me and designer, so I didn't mention our team in the beggining. Since 2025/03/15 development is active (before that this project was freezed). Still building this project just to make development easier
+Yeah, it is a project by Collapse Open-Source Team. It is better to keep it here. In the beggining we had only me and designer, so I didn't mention our team in the beggining.  Since 2025/03/15 development is active (before that this project was freezed). Still building this project just to make development easier
 
 # For people, who looks at this project
-there is some things I used in the beggining. You had better know about these things:
-    - .totmb is same to .md or .txt (just document with text, no more)
+there is some things I used in the beggining. You had better know about these things:  
+    - .totmb is same to .md or .txt (just document with text, no more)  
     - Somewhere you can see comments like this: " /* ember styles */ ". Maybe it is strange to see "Ember"/"Amber"... who is "Ember"/"Amber"?.. Well, "Ember"/"Amber" is... let's call it "subapplication"... it is a subapplication for notes (subapplication cuz I was making this stuff as another application). It is easier for me to call it like that, but in the future I'm gonna remove this name and it will become just "notes"
 
 # Updates (Patch Note)
+Note: we are using our own version naming. In the future I'm gonna add it somewhere here.  
 Since 2025/05/09 we are making update list:
     
 - previously: added landing page, static content for profile, static content for projects list, static content for project page. Then moved static content to backend and marked as "static content"
