@@ -1,9 +1,20 @@
+import { Link } from 'react-router-dom'
 import './accs.css'
+import { useState } from 'react'
+import axios from 'axios'
 
-const LoginPage = () => {
+const SignPage = () => {
+    let [IntoJWTWriter, setIntoJWTWriter] = useState({'access_jwt': '', 'refresh_jwt': ''})
+
+    /*
+        checking if there are a good refresh jwt token
+        sign in form - write JWTs into localstorage (refresh token) and sessionstorage(access token) or may be both in localstorage   
+        
+    */
+
     return(
     <div className='containerLog'>
-        <form action='/indev' className='logForm'>
+        <form action='#' className='logForm'>
             <div className="formCont">
                 <h1 className='logHeader'>
                     Sign In
@@ -33,7 +44,7 @@ const LoginPage = () => {
 
 
             <div style={{color: 'black', marginTop: '150px'}}>
-                Haven't got account yet? <a href="/signup">Sign up for free!</a>
+                Haven't got account yet? <Link to={{pathname:"/signup"}}>Sign up for free!</Link>
             </div>
         </form>
 
@@ -41,4 +52,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default SignPage

@@ -9,7 +9,7 @@ const Offers = () => {
 
             </p>
 
-            <a href="/login">
+            <a href="/signin">
             {/* We haven't dropped out backend, because it is raw, but you can use our base-BE-Morlix repo, which includes base backend code which has been written in JS */}
                 <button className='startAProjectLandButton'>
                     Start a project

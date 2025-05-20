@@ -15,7 +15,7 @@ const HeaderL = () => {
                 <Link to={{pathname:"/wiki"}}>Wiki</Link>
             </nav>
 
-            <Link to={{pathname:"/login"}}>
+            <Link to={{pathname:"/signin"}}>
                 <button className='loginButtonL'>
                     sign in
                 </button>

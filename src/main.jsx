@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 //pages imports
 import LandingPade from './pages/landingPage.jsx'
-import LoginPage from './pages/accounts/login.jsx'
+import SignPage from './pages/accounts/signin.jsx'
 import SignUpPage from './pages/accounts/signup.jsx'
 import ApplicationProfilePage from './pages/workspacePagesCollector/main'
 import ErrorBoundary from './pages/errorPage/index.jsx'
@@ -25,8 +25,8 @@ const routes = createBrowserRouter([
     path:`/`,
     element: <LandingPade />,
   },{
-    path: '/login',
-    element: <LoginPage />
+    path: '/signin',
+    element: <SignPage />
   },{
     path:'/signup',
     element: <SignUpPage />

@@ -55,3 +55,5 @@ Since 2025/05/09 we are making update list:
 - 00007p1s1q (2025/05/11, approximately 12.39 a.m.) - some changes in README.md
 
 - 00008p (2025/05/18, approximately 02.17 a.m.) - disabled post adder button on profile page just to make profiles usable. Started adding some things to backend. Added modal window for project creation and made some things for project creation. Now gonna add some things to backend for accounts and try to make this project way more usable. Next step is authorization.
+
+- 00009p (2025/05/20, approximately 11.52 p.m.) - added accounts creation. Sign in form is not ready (btw, log in form is now sign in form). Added some things on backend side. Gonna continue development of accounts. In 00009p1s gonna add some required files in backend repository (like `requred_dotenv` for `.env` or smth like this)

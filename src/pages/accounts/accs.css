@@ -1,4 +1,5 @@
 .logForm {
+    margin-top: 40px;
     display: flex;
     border-radius: 10px;
     background-color: #efefef;
@@ -74,3 +75,4 @@
 }
 
 /* 10 10 10 9 9 */
+
