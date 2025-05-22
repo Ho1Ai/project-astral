@@ -31,19 +31,19 @@ const routes = createBrowserRouter([
     path:'/signup',
     element: <SignUpPage />
   },{
-    path: '/indev',
+    path: '/app', //or maybe replace with '/app/profile' and '/app' make a simple social network
     element: <ApplicationProfilePage />
   },{
-    path: '/indev/notes',
+    path: '/app/notes',
     element: <NotesPage />
   },{
-    path: '/indev/projects',
+    path: '/app/projects',
     element: <ProjectsListPage />
   },{
-    path: '/indev/projects/projectInfo',
+    path: '/app/projects/projectInfo',
     element: <ProjectMainPage />
   },{
-    path: '/tests/modal',
+    path: '/tests/modal', // doesn't work at the moment
     element: <CreateProjectModal />
   }
 ]) // I should relocate this stuff somewhere else... In the nearest future I'm gonna do it

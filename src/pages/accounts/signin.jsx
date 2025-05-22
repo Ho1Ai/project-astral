@@ -22,15 +22,15 @@ const SignPage = () => {
 
     const signInSend = () => {
         setError('')
+        
+        if(!logName) {
+            setError('"Email / Nickname" field is required')
+            return
+        }
 
         if(passwd.length < 8 || passwd.length>32) {
             console.log(passwd.length)
             setError('Password length must be between 8 and 32')
-            return
-        }
-
-        if(!logName) {
-            setError('Email / Nickname field is required')
             return
         }
 
@@ -51,7 +51,7 @@ const SignPage = () => {
                 // console.log(str_toks) // debug line
                 // console.log(JSON.parse(str_toks)) //debug line
                 localStorage.setItem('project-astral-tkkpv', str_toks) // tkkpv - ToKen KeePer Variable (chars which made this new word are capitals)
-                window.location.href = 'indev'
+                window.location.href = 'app'
             }
         })
     }
@@ -69,7 +69,11 @@ const SignPage = () => {
                         Email / Nickname
                     </h3>
 
-                    <input type="text" onChange={(event)=>{handleLogName(event.target.value)}} className='logPgMainInput'/>
+                    <input 
+                    // placeholder='example@gmail.com' 
+                    type="text" 
+                    onChange={(event)=>{handleLogName(event.target.value)}} 
+                    className='logPgMainInput'/>
                 </div>
 
 

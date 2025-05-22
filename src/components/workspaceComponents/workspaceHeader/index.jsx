@@ -9,9 +9,9 @@ const WorkspaceHeader = () => {
             </h1>
 
             <nav className='headerNavigationBlock'>
-                <Link to={{pathname:'/indev/projects'}} className='headerLink'>My Projects</Link>
-                <Link to={{pathname:'/indev/notes'}} className='headerLink'>Notes</Link>
-                <Link to={{pathname:'/indev'}} className='headerLink'>Profile</Link>
+                <Link to={{pathname:'/app/projects'}} className='headerLink'>My Projects</Link>
+                <Link to={{pathname:'/app/notes'}} className='headerLink'>Notes</Link>
+                <Link to={{pathname:'/app'}} className='headerLink'>Profile</Link>
             </nav>
         </header>
     )
