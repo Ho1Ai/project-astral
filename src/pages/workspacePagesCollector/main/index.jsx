@@ -17,9 +17,10 @@ const ApplicationProfilePage = () => {
 
     let [whichUser, setWhichUser] = useState({'id': ''})
 
-    let tokens = JSON.parse(localStorage.getItem('project-astral-tkkpv'))
-
     useEffect(()=>{
+        let tokens = {jwt_access: localStorage.getItem('project-astral-tkkpv-access'),
+                        jwt_refresh: localStorage.getItem('project-astral-tkkpv-refresh')}
+
         if(profilePageParams__id) {
             axios.get(`http://localhost:8000/api/accounts/get-user-info?rtype=id&id=${profilePageParams__id}`).then((response) => {
                 let resdata = response.data
@@ -32,7 +33,7 @@ const ApplicationProfilePage = () => {
                     alert('An error occured while getting user data')
                 }
             })
-        } else {
+        } else if(tokens.jwt_refresh) {
             axios.get(`http://localhost:8000/api/accounts/get-user-info`, {
                 params:{
                     'rtype': 'jwt'
@@ -41,7 +42,27 @@ const ApplicationProfilePage = () => {
                     'X-JWT-Access': tokens.jwt_access,
                     'X-JWT-Refresh': tokens.jwt_refresh,
                 }
-            }).then((response)=> {console.log(response.data)})
+            }).then((response)=> {
+                console.log(response.data);
+                
+                if (response.data['x-jwt-access']) { // in the nearest future gonna place this stuff into headers, but not now... I am very busy now, so I don't have enough time to do it
+                    tokens.jwt_access = response.data['X-JWT-Access'] // btw, I made this 'if' only for that case, if this token is not returned due to some errors
+                }
+
+                if (response.data['x-jwt-refresh']) {
+                    tokens.jwt_refresh = response.data['X-JWT-Refresh']
+                }
+
+                let tokens_str = JSON.stringify(tokens)
+                localStorage.setItem('project-astral-tkkpv', tokens_str)
+
+                setUserInfo({
+                    uname: response.data.nickname,
+                    description: response.data.description
+                })
+            })
+        } else {
+            setUserInfo({uname: 'Error 8', description: 'You must sign in first!'})
         }
     },[])
 
