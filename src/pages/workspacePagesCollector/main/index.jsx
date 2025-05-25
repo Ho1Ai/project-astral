@@ -18,8 +18,8 @@ const ApplicationProfilePage = () => {
     let [whichUser, setWhichUser] = useState({'id': ''})
 
     useEffect(()=>{
-        let tokens = {jwt_access: localStorage.getItem('project-astral-tkkpv-access'),
-                        jwt_refresh: localStorage.getItem('project-astral-tkkpv-refresh')}
+        let tokens = {jwt_access: JSON.parse(localStorage.getItem('project-astral-tkkpv-access')),
+                        jwt_refresh: JSON.parse(localStorage.getItem('project-astral-tkkpv-refresh'))}
 
         if(profilePageParams__id) {
             axios.get(`http://localhost:8000/api/accounts/get-user-info?rtype=id&id=${profilePageParams__id}`).then((response) => {

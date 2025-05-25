@@ -50,8 +50,8 @@ const SignPage = () => {
                 let str_access_tok = JSON.stringify(jwt_tokens.jwt_access)
                 let str_refresh_tok = JSON.stringify(jwt_tokens.jwt_refresh)
 
-                // console.log(str_toks) // debug line
-                // console.log(JSON.parse(str_toks)) //debug line
+                // console.log(str_access_tok) // debug line
+                // console.log(JSON.parse(str_access_tok)) //debug line
                 localStorage.setItem('project-astral-tkkpv-access', str_access_tok) // tkkpv - ToKen KeePer Variable (chars which made this new word are capitals)
                 localStorage.setItem('project-astral-tkkpv-refresh', str_refresh_tok)
                 // console.log(localStorage.getItem('project-astral-tkkpv'))
