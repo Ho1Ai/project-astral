@@ -7,6 +7,7 @@ import CreateProjectModal from "../createProjectModalWindow"
 import './index.css'
 
 const ProjectsList = () => {
+
     
     //variable declaration
 
@@ -14,7 +15,7 @@ const ProjectsList = () => {
     let [projectsInfoList, setProjectsInfoList] = useState([
         {
             name: 'Project Astral',
-            proj_link: '/indev/projects/projectInfo?project-astral', //it is in development. Now it will open project page just using link, but in the end it will use projects name
+            proj_link: '/app/projects/projectInfo?project-astral', //it is in development. Now it will open project page just using link, but in the end it will use projects name
             "project-name":"project-astral"
         }
     ])
