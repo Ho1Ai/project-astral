@@ -1,4 +1,5 @@
 const ProjectMembers = (properties) => {
+    console.log(properties)
     return (<section className="projectInfoChildInstance">
         <div className="container">
             <h2>Authors:</h2>
@@ -6,7 +7,7 @@ const ProjectMembers = (properties) => {
             <p>List:</p>
             <ul>
                 {properties.authorsList ? properties.authorsList.map((value, index) => {
-                    return(<li key={index}>{value}</li>)
+                    return(<li key={index}>{value.nickname}</li>)
                 }):console.log('no authors mentioned')}  
             </ul>
         </div>

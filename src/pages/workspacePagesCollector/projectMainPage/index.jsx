@@ -32,7 +32,8 @@ const ProjectMainPage = () => {
             console.log(res.data);
             if(res.data.project_main_info.project_data){
             setProjectInformationContainer({
-                project_main_info: res.data.project_main_info.project_data
+                project_main_info: res.data.project_main_info.project_data,
+                to_do_list: res.data.to_do_list?res.data.to_do_list:[]
             })}})
         console.log(projectName)
     }, [])    
@@ -169,12 +170,12 @@ const ProjectMainPage = () => {
         authorTeam={projectInformationContainer.project_main_info.author_team} 
         authorsList={projectInformationContainer.project_main_info.authors_list} />
 
-        {/* <ProjectToDoList rmStatus = {removeToDoListChild} 
+        <ProjectToDoList rmStatus = {removeToDoListChild} 
         input_value = {newToDoText}  
         appendToDo = {appendToDo} 
         handleNewToDoNameChange = {handleNewToDoNameChange} 
         toDoListContent = {projectInformationContainer.to_do_list} 
-        changeStatus = {changeToDoListChildStatus}/> */}
+        changeStatus = {changeToDoListChildStatus}/>
 
         {/* дальше создать здесь docs с помощью Amber */}
 
