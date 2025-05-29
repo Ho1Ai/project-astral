@@ -25,10 +25,15 @@ const ProjectMainPage = () => {
     //     authorsList: [`Ho1Ai`] //Yeah, I am the only developer at the moment... Well, I have a question: y am I speaking English in this component, but in "ProjectToDoList" I speak Russian?.. I don't know... Never mind       // Update on 2025/05/08: forgot to say that we have a small team at the moment
     // }
 
-    let [projectInformationContainer, setProjectInformationContainer] = useState({project_main_info:[{name:'', description:'', authorTeam: '', authorsList: [''], projectLinksArray: [{name:'', link:''}]}]})
+    let [projectInformationContainer, setProjectInformationContainer] = useState({project_main_info:[{name:'', description:'', author_team: '', authors_list: [''], project_links_array: [{name:'', link:''}]}]})
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => setProjectInformationContainer(res.data))
+        axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => {
+            console.log(res.data);
+            if(res.data.project_main_info.project_data){
+            setProjectInformationContainer({
+                project_main_info: res.data.project_main_info.project_data
+            })}})
         console.log(projectName)
     }, [])    
 
@@ -158,24 +163,24 @@ const ProjectMainPage = () => {
     return (<>
         <WorkspaceHeader />
 
-        <ProjectInfo name={projectInformationContainer.project_main_info[0].name} 
-        description={projectInformationContainer.project_main_info[0].description} 
-        projectLinksArray={projectInformationContainer.project_main_info[0].projectLinksArray} 
-        authorTeam={projectInformationContainer.project_main_info[0].authorTeam} 
-        authorsList={projectInformationContainer.project_main_info[0].authorsList} />
+        <ProjectInfo name={projectInformationContainer.project_main_info.name} 
+        description={projectInformationContainer.project_main_info.description} 
+        projectLinksArray={projectInformationContainer.project_main_info.project_links_array} 
+        authorTeam={projectInformationContainer.project_main_info.author_team} 
+        authorsList={projectInformationContainer.project_main_info.authors_list} />
 
-        <ProjectToDoList rmStatus = {removeToDoListChild} 
+        {/* <ProjectToDoList rmStatus = {removeToDoListChild} 
         input_value = {newToDoText}  
         appendToDo = {appendToDo} 
-        /*updateToDoState = {updateToDoState}*/ 
         handleNewToDoNameChange = {handleNewToDoNameChange} 
         toDoListContent = {projectInformationContainer.to_do_list} 
-        changeStatus = {changeToDoListChildStatus}/>
+        changeStatus = {changeToDoListChildStatus}/> */}
 
         {/* дальше создать здесь docs с помощью Amber */}
 
         {/* комментарии */}
 
+        {/*updateToDoState = {updateToDoState}*/ }
         {/* at the moment there is no need in comments. Btw, now I use English */}
 
         {/* <CommentsList list = {commentsList}/> */}

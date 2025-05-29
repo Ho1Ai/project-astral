@@ -11,7 +11,7 @@ const ProjectsList = () => {
     
     //variable declaration
 
-    let user = "Ho1Ai" //cork
+    //let user = "Ho1Ai" //cork
     let [projectsInfoList, setProjectsInfoList] = useState([
         {
             name: 'Project Astral',
@@ -42,8 +42,31 @@ const ProjectsList = () => {
 
     //fetching data from API 
 
+    let tokens = {
+        access: JSON.parse(localStorage.getItem('project-astral-tkkpv-access')),
+        refresh: JSON.parse(localStorage.getItem('project-astral-tkkpv-refresh'))
+    }
+
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/projects/get-available-projects?username=${user}`).then((res) => {setProjectsInfoList(res.data); console.log(res.data)})
+
+        if(tokens.access && tokens.refresh){
+            // axios.get(`http://localhost:8000/api/projects/get-available-projects?username=${user}`).then((res) => {setProjectsInfoList(res.data); console.log(res.data)})
+            axios.get(`http://localhost:8000/api/accounts/project-list`, {
+                headers: {
+                    "X-JWT-Access": tokens.access,
+                    'X-JWT-Refresh': tokens.refresh
+                }
+            }).then((response)=>{
+                console.log(response.data.project_list)
+                if(response.data.project_list){
+                    setProjectsInfoList(response.data.project_list);
+                } else {
+                    alert('something went wrong while fetching data from backend')
+                }
+            })} else {
+                setProjectsInfoList([])
+                alert('looks like there is no access JWT or refresh JWT. This error means that you can not access this page')
+            }
     }, [])
 
 
@@ -77,7 +100,7 @@ const ProjectsList = () => {
                 name: newProjName,
                 description: newProjDesc,
                 authorTeam: newProjTeam,
-                authorsList: [], //it will stay empty at the moment
+                authorsList: [tokens.refresh], //it will stay empty at the moment
                 link: newProjName.toLocaleLowerCase().replace(' ', '-').replace('_','-') // two-step swap
                 /*projectLinks: {
                     'GitHub': newProjGH?newProjGH:null,
