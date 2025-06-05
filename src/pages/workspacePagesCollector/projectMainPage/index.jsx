@@ -27,6 +27,11 @@ const ProjectMainPage = () => {
 
     let [projectInformationContainer, setProjectInformationContainer] = useState({project_main_info:[{name:'', description:'', author_team: '', authors_list: [''], project_links_array: [{name:'', link:''}]}]})
 
+    let tokensPair={
+        access: JSON.parse(localStorage.getItem('project-astral-tkkpv-access')),
+        refresh: JSON.parse(localStorage.getItem('project-astral-tkkpv-refresh'))
+    }
+
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => {
             console.log(res.data);
@@ -84,10 +89,12 @@ const ProjectMainPage = () => {
         axios.put('http://localhost:8000/api/projects/update-todo', {
             'id': targetId,
             'name': 'default',
-            'state': to
+            'state': to,
         }, {
             headers: {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                'X-JWT-Access': tokensPair.access,
+                'X-JWT-Refresh': tokensPair.refresh
             }
         }).then(response => {
             updateTDL(response.data)
