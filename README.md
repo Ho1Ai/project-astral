@@ -22,8 +22,8 @@ Then go to `project-astral-dir/project-astral/` and write `npm run dev`
 Then you can open this application using your browser. Go to https://localhost:5173
 
 
-# React + Vite
 
+# Used react + vite
 For developers: 
     used libraries (exc. React):
         1. react-router-dom
@@ -34,6 +34,9 @@ Uploaded, because I don't wanna use Google Drive to share my project between my 
 
 # Collapse Open-Source Team
 Yeah, it is a project by Collapse Open-Source Team. It is better to keep it here. In the beggining we had only me and designer, so I didn't mention our team in the beggining.  Since 2025/03/15 development is active (before that this project was freezed). Still building this project just to make development easier
+
+# Join our team
+Now you can't join our team, but in the nearest future we will post a link, which would follow our Discord server, and start our project for everyone, who wanna make free and open source applications. Project Astral is an instrument, which could help us.
 
 # For people, who looks at this project
 there is some things I used in the beggining. You had better know about these things:  
