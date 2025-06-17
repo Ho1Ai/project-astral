@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom"
 const ProjectMainPage = () => {
     let [searchParams] = useSearchParams();
     let projectName = searchParams.get('name') 
-    console.log(projectName)
+    // console.log(projectName)
     // let projectInfo = {
     //     //It is just a project page. I'm gonna take everything from API
     //     name: `Project Astral`,
@@ -34,13 +34,13 @@ const ProjectMainPage = () => {
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/projects/get-project-info?project_name=${projectName}`).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data.project_main_info.project_data){
             setProjectInformationContainer({
                 project_main_info: res.data.project_main_info.project_data,
                 to_do_list: res.data.to_do_list?res.data.to_do_list:[]
             })}})
-        console.log(projectName)
+        // console.log(projectName)
     }, [])    
 
     // let [listOfToDo, setListOfToDo] = useState([
@@ -60,9 +60,9 @@ const ProjectMainPage = () => {
         // setProjectInformationContainer((old) => {
         //     console.log(old)
         // })
-        console.log(new_TDL_data, projectInformationContainer)
+        // console.log(new_TDL_data, projectInformationContainer)
         setProjectInformationContainer((old) => {
-            console.log(old.to_do_list)            
+            // console.log(old.to_do_list)            
             return {
                 project_main_info: old.project_main_info, 
                 to_do_list: new_TDL_data.new_TDL
@@ -83,8 +83,6 @@ const ProjectMainPage = () => {
         //     return(rewriter)
             
         // })
-
-        // console.log('пенис жопа вазелин', targetId, typeof(targetId), to, typeof(to))
         
         axios.put('http://localhost:8000/api/projects/update-todo', {
             'id': targetId,
@@ -97,7 +95,18 @@ const ProjectMainPage = () => {
                 'X-JWT-Refresh': tokensPair.refresh
             }
         }).then(response => {
-            updateTDL(response.data)
+            // console.log(response.data)
+            if(response.data.is_ok == true && response.data.status_code == 0){
+                updateTDL(response.data.new_tdl)
+                if(response.data.access_JWT) {
+                    localStorage.setItem('project-astral-tkkpv-access', JSON.stringify(response.data.access_JWT))
+                }
+                if(response.data.refresh_JWT) {
+                    localStorage.setItem('project-astral-tkkpv-refresh', JSON.stringify(response.data.refresh_JWT))
+                }
+            } else {
+                alert('An error occured!') // yeah, I am the laziest person in my room. I can't even use two thens instead of this stuff... also I didn't try to split this stuff, lmao
+            }
         })
 
         
@@ -133,7 +142,7 @@ const ProjectMainPage = () => {
         //     return test;
         // })
 
-        console.log('new to do:', newToDoText, typeof(newToDoText))
+        // console.log('new to do:', newToDoText, typeof(newToDoText))
 
         if(newToDoText==""){
             alert(`to do list can't keep empty strings`)
@@ -147,15 +156,24 @@ const ProjectMainPage = () => {
 
         axios.post('http://localhost:8000/api/projects/append-todo', {
             name: newToDoText,
-            state: 1
-        }).then((response) => {updateTDL(response.data)})
+            proj_link: projectName,
+            headers: {
+                'X-JWT-Access': JSON.parse(localStorage.getItem('project-astral-tkkpv-access')),
+                'X-JWT-Refresh': JSON.parse(localStorage.getItem('project-astral-tkkpv-refresh'))
+            }
+        }).then((response) => {
+            console.log(response.data)
+            if (response.data.newTDL) {
+                updateTDL(response.data.newTDL)
+            }
+        })
 
         setNewToDoText('')
     }
 
     const handleNewToDoNameChange = (e) => {
         setNewToDoText(e.target.value)
-        console.log(newToDoText)
+        // console.log(newToDoText)
     }
 
     // const updateToDoState = async(targetId, newState) => {

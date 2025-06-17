@@ -4,7 +4,7 @@ import ProjectMembers from './members'
 import ProjectLinks from './links'
 
 const ProjectInfo = (properties) => {
-    console.log(properties)
+    // console.log(properties)
     return (
         <section className="projectInfoSection">
             <ProjectDescription name={properties.name} description={properties.description} />

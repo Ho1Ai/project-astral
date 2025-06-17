@@ -43,17 +43,17 @@ const ApplicationProfilePage = () => {
                     'X-JWT-Refresh': tokens.jwt_refresh,
                 }
             }).then((response)=> {
-                console.log(response.data);
+                // console.log(response.data);
                 
                 if (response.data['X-JWT-Access']) { // in the nearest future gonna place this stuff into headers, but not now... I am very busy now, so I don't have enough time to do it
                     tokens.jwt_access = JSON.stringify(response.data['X-JWT-Access']) // btw, I made this 'if' only for that case, if this token is not returned due to some errors
-                    console.log(tokens.jwt_access)
+                    // console.log(tokens.jwt_access)
                     localStorage.setItem('project-astral-tkkpv-access', tokens.jwt_access)
                 }
 
                 if (response.data['X-JWT-Refresh']) {
                     tokens.jwt_refresh = JSON.stringify(response.data['X-JWT-Refresh'])
-                    console.log(tokens.jwt_refresh)
+                    // console.log(tokens.jwt_refresh)
                     localStorage.setItem('project-astral-tkkpv-refresh', tokens.jwt_refresh)
                 }
 
@@ -61,7 +61,7 @@ const ApplicationProfilePage = () => {
                 // localStorage.setItem('project-astral-tkkpv', tokens_str)
 
 
-                console.log("refresh:", tokens.jwt_refresh)
+                // console.log("refresh:", tokens.jwt_refresh)
 
                 // if (tokens.jwt_refresh!=undefined){
                 //     localStorage.setItem('project-astral-tkkpv-refresh', tokens.jwt_refresh)

@@ -7,6 +7,10 @@ import './index.css'
 const ProjectToDoList = (properties) => {
     const[archieveVisible, setArchieveVisible] = useState(false) //by default archieve must be hidden. Didn't add ability to remove entities from archieve yet, but gonna add it soon
 
+    let isShown = false // at the moment I wanna hide to do list entity appender
+
+    let isEmpty = false //it is nothing but cork. Never mind
+
     // const changeStatus = (index) => {
     //     properties.changeStatus(index)
     // }
@@ -14,10 +18,10 @@ const ProjectToDoList = (properties) => {
     // расположить здесь to do list. У каждого to do list instance есть state, который будет относить его к одному из 4 списком: Not Started, In Progress, Ready, Freezed. Да, это уже было в комментарии в компоненте project main page, но это тебе, Ho1Ai (опять с собой говорю), если ты опять забросишь этот проект... 
     return (
         <section className="toDoListSection">
-            <div className="toDoAppender">
+            { isShown && <div className="toDoAppender">
                 <input type="text" className="appendToDo" onChange={properties.handleNewToDoNameChange} value={properties.input_value}/>
                 <button className='confirmToDoAppending' onClick={properties.appendToDo}>+</button>
-            </div>
+            </div> }
             <div className='toDoListWrapper'>
                 <div className="toDoListSectionContentContainer notStartedContainer">
                     <header className="toDoListSectionContentContainersHeader">                    
@@ -54,7 +58,7 @@ const ProjectToDoList = (properties) => {
                                         </div>
                                     </li>
                                 )
-                            }):console.log('empty list')
+                            }):isEmpty=true
                         }
                     </div>
                 </div>
@@ -93,7 +97,7 @@ const ProjectToDoList = (properties) => {
                                         </div>
                                     </li>
                                 )
-                            }):console.log('empty list')
+                            }):isEmpty=true
                         }
                     </div>
                 </div>
@@ -134,7 +138,7 @@ const ProjectToDoList = (properties) => {
                                         </div>
                                     </li>
                                 )
-                            }):console.log('empty list')
+                            }):isEmpty=true
                         }
                     </div>
                 </div>
@@ -173,7 +177,7 @@ const ProjectToDoList = (properties) => {
                                         </div>
                                     </li>
                                 )
-                            }):console.log('empty list')
+                            }):isEmpty=true
                         }
                     </div>
                 </div>
@@ -190,7 +194,7 @@ const ProjectToDoList = (properties) => {
                                 {value.name}
                             </li>)
                         }
-                    }):console.log('archieve is empty')}
+                    }):isEmpty=true}
                 </ul>}
             </div>
         </section>    

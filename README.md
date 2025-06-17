@@ -13,6 +13,7 @@ This line makes a local copy of backend repository. It has no file "requirements
 - fastapi  
 - uvicorn  
 - asyncpg  
+
 If you wanna download all these libraries, just write next (venv is required. Wrote a line with venv creation):  
 `python3 -m venv venv && . venv/bin/activate && pip install fastapi uvicorn asyncpg`  
 NOTE: it may also require pydantic, so if it doesn't work because there are nothing called pydantic, just install pydantic using pip install pydantic  
@@ -65,4 +66,6 @@ Since 2025/05/09 we are making update list:
 
 - 00009p1s1q (2025/05/23) - added data getter to main page and renamed pages: since now instead of `localhost:5173/indev...` we use `localhost:5173/app...`. Also added some things to backend (yeah, it is not good, because in email getter I've added JWT expire date checker... I was sleepy a lil bit and didn't understand this stuff. Gonna make it a lil bit better in the future). Also wanna anounce one new project, which
 
-- 00010p (2025/05/28, approximately 11.13 p.m.) - adding project list getter, which gets username
+- 00010p (2025/05/28, approximately 11.13 p.m.) - adding project list getter, which gets username  
+
+- 00011p (2025/06/17, approximately 9.17 p.m) - added to do list getter. Since now to do appender is hidden, because I didn't add moderators into projects so now I'll add this stuff. Also need to change some stuff on backend in order to make two groups: people, who can see this project inner content and change it; and people, who can see this project inner content, but can't change it, because they are not in project creators team. More logic idea than that stuff, which is used at the moment (when anyone can change everything (I mean TDL: chage state and do smth like this)). 
